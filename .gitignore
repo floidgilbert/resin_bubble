@@ -1,3 +1,18 @@
+# User-defined
+*.pyc
+*.xcf
+/private/
+/temp/
+
+# Misc
+/.idea
+node_modules
+__pycache__
+shap.egg-info
+.eggs
+.vscode
+.DS_Store
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
