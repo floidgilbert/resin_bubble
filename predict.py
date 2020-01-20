@@ -71,7 +71,7 @@ multiple models are discriminated using intersection over union (IOU)."""
         nargs='+',
         metavar='MODEL',
         help='One or more PyTorch model files to use for prediction.',
-        default=['./models/resin_bubble.pth']
+        default=['./models/default.pth']
     )
     parser.add_argument(
         '--min_area',

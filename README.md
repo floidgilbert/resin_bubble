@@ -4,9 +4,8 @@ The Resin Bubble project identifies bubbles against a carbon fiber background in
 
 This project was created to support ///link to paper or presentation///. ///List grants and sponsors///.
 
-<!-- /// -->
 <div align="center">
-  <img src="https://user-images.githubusercontent.com/1381301/66535560-d3422200-eace-11e9-9123-5535d469db19.png"/>
+  <img src="./data/sample.gif"/>
 </div>
 
 ## Table of Contents
@@ -127,7 +126,7 @@ This approach involves tuning the pre-trained model included with the Resin Bubb
         --masks <mask directory> \
         --output ./models/00 \
         --iterations <iterations> \
-        --weights ./models/resin_bubble.pth
+        --weights ./models/default.pth
     ```   
 
 6. The new model is `./models/00/model_final.pth`. Use this model to generate new predictions. For example:

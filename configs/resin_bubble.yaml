@@ -44,23 +44,20 @@ SOLVER:
   # In resin, IMS_PER_BATCH is the number of images per GPU.
   IMS_PER_BATCH: 1
 
-#  BASE_LR: 0.0025
-  BASE_LR: 0.01
-  CHECKPOINT_PERIOD: 1000000
   LR_SCHEDULER_NAME: "WarmupMultiStepLR"
-#  WARMUP_ITERS: 1000
-
-# ///
+  BASE_LR: 0.01
   MOMENTUM: 0.9
+  CHECKPOINT_PERIOD: 1000000
 
-  GAMMA: 0.1
+  GAMMA: 0.5
 # The iteration number to decrease learning rate by GAMMA.
   STEPS:
-    - 60
-    - 100
+    - 1500
+    - 4000
+    - 6000
 
   WARMUP_FACTOR: 0.0001
-  WARMUP_ITERS: 20
+  WARMUP_ITERS: 1000
   WARMUP_METHOD: "linear"
 
 TEST:
