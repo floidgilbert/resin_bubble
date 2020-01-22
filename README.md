@@ -25,7 +25,7 @@ TODO -- Finish this line -- This project was created to support ///paper or pres
 #### Requirements
 
 - Linux or MacOS
-- Git
+- [Git Large File Support](https://git-lfs.github.com/)
 - Python >= 3.7
 - pip3
 - GCC >= 4.9
@@ -35,25 +35,19 @@ TODO -- Finish this line -- This project was created to support ///paper or pres
 1. Install detectron2 and its dependencies.
 
     ```
-    pip3 install torch===1.3.1 torchvision===0.4.2 opencv-python cython shapely
+    pip3 install torch torchvision opencv-python cython shapely
     pip3 install -U git+https://github.com/facebookresearch/fvcore
     pip3 install git+https://github.com/facebookresearch/detectron2.git
     pip3 install git+https://github.com/cocodataset/cocoapi.git#subdirectory=PythonAPI
     ```
  
-2. Install [Git Large File Support](https://git-lfs.github.com/) (Git LFS).
-
-    ```
-    git lfs install
-    ``` 
-
-3. Clone the resin_bubble repository using LFS. The repository contains command line interface scripts, the resin_bubble Python package, a pretrained model, and training data.
+2. Clone the resin_bubble repository using LFS. The repository contains command line interface scripts, the resin_bubble Python package, a pretrained model, and training data.
 
     ```
     git lfs clone https://github.com/floidgilbert/resin_bubble.git
     ``` 
 
-4. Change directories to the `resin_bubble` directory to use the command line interface (CLI). There is no need to install the included Python package unless you plan on using its components in your own scripts.
+3. Change directories to the `resin_bubble` directory to use the command line interface (CLI). There is no need to install the included Python package unless you plan on using its components in your own scripts.
 
     ```
     cd resin_bubble
@@ -118,7 +112,7 @@ This approach involves tuning the pre-trained model included with the Resin Bubb
 
 3. Update the masks, and original images if necessary, using the guide [Creating Training Masks](#creating-training-masks)
 
-4. Use the following command as a template to train the model. Replace tokens (items surrounded by angled brackets) with the appropriate values. For `<iterations>`, take the number of mask images you modified in the previous step and multiply that number by 50. For example, if you have five images, replace `<iterations>` with 250. During execution, watch the training output. By the end, `loss_mask` should be consistently close to 0.17. If not, try increasing the number of iterations.
+4. Use the following command as a template to train the model. Replace tokens (items surrounded by angled brackets) with the appropriate values. For `<iterations>`, take the number of mask images you modified in the previous step and multiply that number by 50. For example, if you have five images, replace `<iterations>` with 250. During execution, watch the training output. By the end, `loss_mask` should be consistently close to 0.15. If not, try increasing the number of iterations.
 
     ```
     python3 -m torch.distributed.launch train.py \
@@ -148,7 +142,7 @@ This section outlines training a new model using new and existing training data 
 
 3. Update the masks, and original images if necessary, using the guide [Creating Training Masks](#creating-training-masks)
 
-4. Use the following command as a template to train the model. The training routine will print several metrics to the console. If `loss_mask` is consistently less than 0.17 when the task finishes, increase the iterations parameter by 1000 or 2000, and execute the command again.  
+4. Use the following command as a template to train the model. The training routine will print several metrics to the console. If `loss_mask` is consistently less than 0.15 when the task finishes, increase the iterations parameter by 1000 or 2000, and execute the command again.  
 
     ```
     python3 -m torch.distributed.launch train.py \
@@ -188,7 +182,7 @@ Here is a general description of the annotation process. For each image/mask com
 INPUT.CROP.SIZE '(0.80, 0.80)'
 ```
 
-Replace the default values with any decimal values in the interval [0, 1] that indicate the crop height and width relative to the original image size. Reduce the crop size to avoid memory errors. If you reduce the crop size significantly, you may need to increase the number of iterations during training time to maintain the appropriate accuracy level (e.g., `loss_mask` consistently around 0.17).
+Replace the default values with any decimal values in the interval [0, 1] that indicate the crop height and width relative to the original image size. Reduce the crop size to avoid memory errors. If you reduce the crop size significantly, you may need to increase the number of iterations during training time to maintain the appropriate accuracy level (e.g., `loss_mask` consistently around 0.15).
 
 If you still experience memory errors after reducing the crop size, try increasing the computer's RAM. 
 
