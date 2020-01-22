@@ -2,7 +2,7 @@
 
 The Resin Bubble project identifies bubbles against a carbon fiber background in resin cure images. Identification is achieved using Mask R-CNN instance segmentation as implemented in [detectron2](https://github.com/facebookresearch/detectron2/blob/master/INSTALL.md). Resin Bubble scripts generate image masks, visualizations, animations, plots, and a JSON file that specifies bubble locations and areas. If the pre-trained Mask R-CNN model fails to identify bubbles of interest in your tests, a simplified interface for model training is provided to facilitate identification of new bubble types.
 
-This project was created to support ///link to paper or presentation///. ///List grants and sponsors///.
+TODO -- Finish this line -- This project was created to support ///paper or presentation///. ///List grants and sponsors///.
 
 <div align="center">
   <img src="./data/sample.gif"/>
@@ -148,14 +148,14 @@ This section outlines training a new model using new and existing training data 
 
 3. Update the masks, and original images if necessary, using the guide [Creating Training Masks](#creating-training-masks)
 
-4. Use the following command as a template to train the model. Execute the command several times until the `loss_mask` value printed in the console is consistently close to 0.17.
+4. Use the following command as a template to train the model. The training routine will print several metrics to the console. If `loss_mask` is consistently less than 0.17 when the task finishes, increase the iterations parameter by 1000 or 2000, and execute the command again.  
 
     ```
     python3 -m torch.distributed.launch train.py \
         --input ./data/train \
         --masks ./data/train/mask \
         --output ./models/01 \
-        --iterations 1000 \
+        --iterations 3000 \
         --resume
     ```
 
@@ -197,4 +197,6 @@ If you still experience memory errors after reducing the crop size, try increasi
 The Resin Bubble project uses [PyTorch](https://pytorch.org/) for machine learning. If a task is interrupted unexpectedly either by the user or a runtime error, PyTorch is not always able to clean up child processes. If you are unable to run a new task after a previous tasks aborts, try manually terminating the related processes. For example, `pkill python` will terminate all Python tasks.
 
 As of this writing, detectron2 does not handle training images that contain zero instances.
-  
+
+If progress bars do not appear correctly in the terminal, change the terminal encoding to UTF-8.
+ 
