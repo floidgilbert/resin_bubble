@@ -76,10 +76,6 @@ class EnsembleBatchPredictor:
     output directory.
     """
 
-    # Listing here just for type hints
-    cfg: CfgNode
-    models: List[str]
-
     def __init__(
             self,
             cfg: CfgNode,
